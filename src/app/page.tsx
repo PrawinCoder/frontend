@@ -38,7 +38,6 @@ export default function JobBoard() {
 
         <JobGrid ref={jobGridRef} filters={filters} />
       </main>
-
       <CreateJobModal opened={modalOpened} onClose={() => setModalOpened(false)} onJobCreated={handleJobCreated} />
     </>
   )
