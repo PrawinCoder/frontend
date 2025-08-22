@@ -26,7 +26,7 @@ export function Navbar({ onJobCreated }: { onJobCreated?: () => void }) {
         {/* Left: Logo */}
         <div className="flex items-center flex-shrink-0">
           <div className="w-10 h-10 grid place-items-center">
-            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
+            <img src="/logo.svg" alt="Logo" className="w-10 h-10 object-contain" />
           </div>
         </div>
 
