@@ -151,7 +151,7 @@ export default function CreateJobModal({
                 name="title"
                 control={control}
                 render={({ field }) => (
-                  <TextInput {...field} placeholder="Full Stack Developer" error={errors.title?.message} size="md" />
+                  <TextInput {...field} placeholder="Full Stack Developer" error={errors.title?.message} size="md" radius={"md"}/>
                 )}
               />
             </Stack>
@@ -168,6 +168,7 @@ export default function CreateJobModal({
                     placeholder="Amazon, Microsoft, Swiggy"
                     error={errors.company?.message}
                     size="md"
+                    radius={"md"}
                   />
                 )}
               />
@@ -196,6 +197,7 @@ export default function CreateJobModal({
                     ]}
                     error={errors.location?.message}
                     size="md"
+                    radius={"md"}
                   />
                 )}
               />
@@ -219,6 +221,7 @@ export default function CreateJobModal({
                     ]}
                     error={errors.job_type?.message}
                     size="md"
+                    radius={"md"}
                   />
                 )}
               />
@@ -246,6 +249,7 @@ export default function CreateJobModal({
                       leftSection="₹"
                       error={errors.salary_min?.message}
                       size="md"
+                      radius={"md"}
                     />
                   )}
                 />
@@ -264,6 +268,7 @@ export default function CreateJobModal({
                       leftSection="₹"
                       error={errors.salary_max?.message}
                       size="md"
+                      radius={"md"}
                     />
                   )}
                 />
@@ -283,6 +288,7 @@ export default function CreateJobModal({
                     valueFormat="YYYY-MM-DD"
                     error={errors.application_deadline?.message}
                     size="md"
+                    radius={"md"}
                   />
                 )}
               />
@@ -303,6 +309,7 @@ export default function CreateJobModal({
                   minRows={4}
                   error={errors.description?.message}
                   size="md"
+                  radius={"md"}
                 />
               )}
             />
@@ -322,6 +329,7 @@ export default function CreateJobModal({
                   minRows={3}
                   error={errors.requirements?.message}
                   size="md"
+                  radius={"md"}
                 />
               )}
             />
@@ -341,6 +349,7 @@ export default function CreateJobModal({
                   minRows={3}
                   error={errors.responsibilities?.message}
                   size="md"
+                  radius={"md"}
                 />
               )}
             />

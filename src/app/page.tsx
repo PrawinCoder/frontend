@@ -28,15 +28,16 @@ export default function JobBoard() {
 
   return (
     <>
-      <Navbar onJobCreated={handleJobCreated} />
+      <header style={{ paddingTop: 120, paddingLeft: 20, paddingRight: 20, width: "100%", boxShadow: "0px 0px 14px 0px #C6BFBF60" }}>
+        <Navbar onJobCreated={handleJobCreated} />
+        <SearchFilters onFiltersChange={setFilters} />
+      </header>
 
-      <Box pt={120} bg="gray.0" mih="100vh">
-        <Container size="xl" py="xl">
-          <SearchFilters onFiltersChange={setFilters} />
+      <main style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, maxWidth: 1400, margin: "0 auto" }}>
 
-          <JobGrid ref={jobGridRef} filters={filters} />
-        </Container>
-      </Box>
+
+        <JobGrid ref={jobGridRef} filters={filters} />
+      </main>
 
       <CreateJobModal opened={modalOpened} onClose={() => setModalOpened(false)} onJobCreated={handleJobCreated} />
     </>
