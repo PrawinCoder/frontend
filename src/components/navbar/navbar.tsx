@@ -25,8 +25,8 @@ export function Navbar({ onJobCreated }: { onJobCreated?: () => void }) {
       >
         {/* Left: Logo */}
         <div className="flex items-center flex-shrink-0">
-          <div className="w-8 h-8 grid place-items-center">
-            <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
+          <div className="w-10 h-10 grid place-items-center">
+            <img src="/logo.png" alt="Logo" className="w-10 h-10 object-contain" />
           </div>
         </div>
 
@@ -37,12 +37,12 @@ export function Navbar({ onJobCreated }: { onJobCreated?: () => void }) {
               key={item}
               href="#"
               className="
-                w-[102px] h-[48px]
+                w-[122px] h-[48px]
                 rounded-[12px]
                 opacity-100
                 px-[5px] py-[5px]
                 flex items-center justify-center
-                text-gray-900 font-medium text-sm
+                text-gray-900 font-medium text-md
                 transition-all duration-200
                 hover:translate-x-1 hover:shadow-lg hover:bg-white hover:text-gray-900
                 active:translate-x-[2px] active:shadow-md
@@ -72,8 +72,8 @@ export function Navbar({ onJobCreated }: { onJobCreated?: () => void }) {
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           className={`
-            relative overflow-hidden flex-shrink-0 -mr-2
-            ${hover ? "w-[120px] h-[38px] translate-x-1 shadow-lg" : "w-[120px] h-[36px]"}
+            relative overflow-hidden flex-shrink-0 mr-2
+            ${hover ? "w-[120px] h-[42px] translate-x-1 shadow-lg" : "w-[120px] h-[40px]"}
             rounded-[20px]
             bg-gradient-to-b from-[#A128FF] to-[#6100AD]
             text-white font-semibold

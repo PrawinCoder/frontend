@@ -56,7 +56,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
       setError(null)
       setUsingFallback(false)
 
-      console.log("[v0] Fetching jobs from local API proxy...")
+      console.log(" Fetching jobs from local API proxy...")
 
       const queryParams = new URLSearchParams()
       if (filters?.search) queryParams.append("search", filters.search)
@@ -68,7 +68,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
       }
 
       const url = `/api/jobs${queryParams.toString() ? `?${queryParams.toString()}` : ""}`
-      console.log("[v0] Fetching with URL:", url)
+      console.log(" Fetching with URL:", url)
 
       const response = await fetch(url, {
         method: "GET",
@@ -78,14 +78,14 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         },
       })
 
-      console.log("[v0] Response status:", response.status)
+      console.log(" Response status:", response.status)
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
 
       const apiResponse: ExternalApiResponse = await response.json()
-      console.log("[v0] API Response:", apiResponse)
+      console.log(" API Response:", apiResponse)
 
       if (!apiResponse || !apiResponse.data || !Array.isArray(apiResponse.data)) {
         throw new Error("Invalid response format from API")
@@ -94,12 +94,12 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
       const transformedJobs = apiResponse.data.map(transformApiJobToCardProps)
       setJobs(transformedJobs)
 
-      console.log("[v0] Successfully loaded", transformedJobs.length, "jobs from API")
-      console.log("[v0] Total jobs available:", apiResponse.total)
+      console.log(" Successfully loaded", transformedJobs.length, "jobs from API")
+      console.log(" Total jobs available:", apiResponse.total)
     } catch (err) {
-      console.error("[v0] Error fetching jobs:", err)
+      console.error(" Error fetching jobs:", err)
 
-      console.log("[v0] Using fallback mock data due to API error")
+      console.log(" Using fallback mock data due to API error")
       setJobs(mockJobs)
       setUsingFallback(true)
       setError(null)
@@ -113,7 +113,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
   }))
 
   useEffect(() => {
-    console.log("[v0] Filters changed, refetching jobs:", filters)
+    console.log(" Filters changed, refetching jobs:", filters)
     fetchJobs()
   }, [filters])
 
@@ -140,7 +140,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
       description: description,
       timeAgo: timeAgo,
       onApply: () => {
-        console.log(`[v0] Applied to ${apiJob.title} at ${apiJob.company}`)
+        console.log(` Applied to ${apiJob.title} at ${apiJob.company}`)
       },
     }
   }
@@ -171,7 +171,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Full Stack Developer at Amazon"),
+      onApply: () => console.log(" Applied to Full Stack Developer at Amazon"),
     },
     {
       jobTitle: "Node Js Developer",
@@ -185,7 +185,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Node Js Developer at Tesla"),
+      onApply: () => console.log(" Applied to Node Js Developer at Tesla"),
     },
     {
       jobTitle: "UX/UI Designer",
@@ -199,7 +199,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to UX/UI Designer at Upwork"),
+      onApply: () => console.log(" Applied to UX/UI Designer at Upwork"),
     },
     {
       jobTitle: "Full Stack Developer",
@@ -213,7 +213,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Full Stack Developer at Amazon"),
+      onApply: () => console.log(" Applied to Full Stack Developer at Amazon"),
     },
     {
       jobTitle: "Node Js Developer",
@@ -227,7 +227,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Node Js Developer at Tesla"),
+      onApply: () => console.log(" Applied to Node Js Developer at Tesla"),
     },
     {
       jobTitle: "UX/UI Designer",
@@ -241,7 +241,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to UX/UI Designer at Upwork"),
+      onApply: () => console.log(" Applied to UX/UI Designer at Upwork"),
     },
     {
       jobTitle: "Full Stack Developer",
@@ -255,7 +255,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Full Stack Developer at Amazon"),
+      onApply: () => console.log(" Applied to Full Stack Developer at Amazon"),
     },
     {
       jobTitle: "Node Js Developer",
@@ -269,7 +269,7 @@ const JobGrid = forwardRef<JobGridRef, JobGridProps>(({ filters }, ref) => {
         "Filter destinations based on interests and travel style, and create personalized",
       ],
       timeAgo: "24h Ago",
-      onApply: () => console.log("[v0] Applied to Node Js Developer at Tesla"),
+      onApply: () => console.log(" Applied to Node Js Developer at Tesla"),
     },
   ]
 

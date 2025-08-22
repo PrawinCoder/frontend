@@ -41,7 +41,7 @@ export default function JobCard({
     <Card
       shadow="sm"
       radius="lg"
-      withBorder
+     
       style={{ backgroundColor: "#FFFFFF" , border: "1px solid ##D3D3D326" }}
       className=" border-y-1 border-gray-100 shadow rounded-xl w-full h-[360px] relative"
     >
@@ -128,7 +128,7 @@ export default function JobCard({
           fullWidth
           size="md"
           radius="md"
-          style={{ backgroundColor: "#00AAFF", color: "white", fontWeight: 600, padding: '0.6rem 0.6rem' }}
+          style={{ backgroundColor: "#00AAFF", color: "white", fontWeight: 600, padding: '0.6rem 0.6rem' ,  }}
           onClick={onApply}
         >
           Apply Now

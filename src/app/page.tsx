@@ -20,7 +20,7 @@ export default function JobBoard() {
   const jobGridRef = useRef<JobGridRef>(null)
 
   const handleJobCreated = () => {
-    console.log("[v0] Job created, refreshing job list...")
+    console.log(" Job created, refreshing job list...")
     if (jobGridRef.current) {
       jobGridRef.current.refreshJobs()
     }

@@ -4,6 +4,7 @@ import { Modal, TextInput, Textarea, Select, Button, Group, Stack, Text } from "
 import { DateInput } from "@mantine/dates"
 import { useForm, type SubmitHandler, Controller } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { ChevronsDown, ChevronsRight } from "lucide-react"
 import * as z from "zod"
 
 const jobSchema = z
@@ -93,14 +94,14 @@ export default function CreateJobModal({
       if (!res.ok) throw new Error("Failed to create job")
 
       const result = await res.json()
-      console.log("[v0] Job created successfully:", result.message)
+      console.log("Job created successfully:", result.message)
       reset()
       onClose()
       if (onJobCreated) {
         onJobCreated()
       }
     } catch (err) {
-      console.error("[v0] Error creating job:", err)
+      console.error("Error creating job:", err)
     }
   }
 
@@ -346,8 +347,21 @@ export default function CreateJobModal({
           </Stack>
 
           <Group justify="space-between" mt="xl">
-            <Button variant="outline" color="gray" size="md" px="xl" onClick={handleSaveDraft} disabled={isSubmitting}>
-              Save Draft ↓
+            <Button
+              variant="outline"
+              color="black"
+              size="md"
+              px="xl"
+              onClick={handleSaveDraft}
+              disabled={isSubmitting}
+              styles={{
+                root: {
+                  borderRadius: "12px",
+                },
+              }}
+              rightSection={<ChevronsDown size={16} />}
+            >
+              Save Draft
             </Button>
             <Button
               type="submit"
@@ -356,11 +370,13 @@ export default function CreateJobModal({
               disabled={isSubmitting}
               styles={{
                 root: {
-                  backgroundColor: "#1c7ed6",
+                  backgroundColor: "#00AAFF",
+                  borderRadius: "12px",
                 },
               }}
+              rightSection={<ChevronsRight size={16} />}
             >
-              Publish →
+              Publish
             </Button>
           </Group>
         </Stack>

@@ -9,7 +9,7 @@ export async function GET(request: NextRequest) {
   const salaryMax = searchParams.get("salaryMax")
 
   try {
-    console.log("[v0] API: Proxying request to external jobs API...")
+    console.log(" API: Proxying request to external jobs API...")
 
     // Build external API URL with filters
     const externalUrl = new URL("https://backend-ke5l.onrender.com/jobs")
@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
     if (salaryMin) externalUrl.searchParams.set("salary_min", salaryMin)
     if (salaryMax) externalUrl.searchParams.set("salary_max", salaryMax)
 
-    console.log("[v0] Fetching from external API with filters:", externalUrl.toString())
+    console.log(" Fetching from external API with filters:", externalUrl.toString())
 
     // Fetch from external API server-side to avoid CORS issues
     const response = await fetch(externalUrl.toString(), {
@@ -33,18 +33,18 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    console.log("[v0] External API response status:", response.status)
+    console.log(" External API response status:", response.status)
 
     if (!response.ok) {
       throw new Error(`External API error! status: ${response.status}`)
     }
 
     const data = await response.json()
-    console.log("[v0] Successfully fetched", data.data?.length || 0, "jobs from external API")
+    console.log(" Successfully fetched", data.data?.length || 0, "jobs from external API")
 
     return NextResponse.json(data, { status: 200 })
   } catch (error) {
-    console.error("[v0] API Error proxying external jobs:", error)
+    console.error(" API Error proxying external jobs:", error)
 
     let fallbackJobs = [
       {
@@ -147,7 +147,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    console.log("[v0] API: Creating job with data:", body)
+    console.log(" API: Creating job with data:", body)
 
     try {
       const response = await fetch("https://backend-ke5l.onrender.com/jobs", {
@@ -173,7 +173,7 @@ export async function POST(request: NextRequest) {
       }
 
       const newJob = await response.json()
-      console.log("[v0] API: Job created successfully in external API with ID:", newJob.id)
+      console.log(" API: Job created successfully in external API with ID:", newJob.id)
 
       return NextResponse.json(
         {
@@ -183,7 +183,7 @@ export async function POST(request: NextRequest) {
         { status: 201 },
       )
     } catch (externalError) {
-      console.error("[v0] External API error, falling back to local creation:", externalError)
+      console.error(" External API error, falling back to local creation:", externalError)
 
       const newJob = {
         id: Date.now().toString(),
@@ -200,7 +200,7 @@ export async function POST(request: NextRequest) {
         created_at: new Date().toISOString(),
       }
 
-      console.log("[v0] API: Job created locally with ID:", newJob.id)
+      console.log(" API: Job created locally with ID:", newJob.id)
 
       return NextResponse.json(
         {
@@ -211,7 +211,7 @@ export async function POST(request: NextRequest) {
       )
     }
   } catch (error) {
-    console.error("[v0] API Error creating job:", error)
+    console.error(" API Error creating job:", error)
     return NextResponse.json({ error: "Failed to create job" }, { status: 500 })
   }
 }
