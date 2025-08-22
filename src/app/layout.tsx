@@ -10,6 +10,7 @@ import "@mantine/dates/styles.css"
 import { ColorSchemeScript } from "@mantine/core";
 import { Metadata } from "next";
 import { Footer } from "./footer";
+import { Analytics } from "@vercel/analytics/next"
 
 export const metadata: Metadata = {
   title: "Job Portal",
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body className="font-satoshi">
         <MantineProvider>
           {children}
+          <Analytics />
            <Footer />
         </MantineProvider>
       </body>
