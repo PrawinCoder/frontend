@@ -1,23 +1,44 @@
-// app/page.tsx
-"use client";
+"use client"
 
-import { SearchFilters } from "@/components/filters/searchFilters";
-import JobGrid from "@/components/jobs/jobGrid";
-import { Navbar } from "@/components/navbar/navbar";
-export default function HomePage() {
+import { Container, Box } from "@mantine/core"
+import { useState, useRef } from "react"
+import { SearchFilters } from "@/components/filters/searchFilters"
+import { Navbar } from "@/components/navbar/navbar"
+import CreateJobModal from "@/components/create/CreateJobModal"
+import JobGrid, { JobGridRef } from "@/components/jobs/jobGrid"
+
+
+export default function JobBoard() {
+  const [modalOpened, setModalOpened] = useState(false)
+  const [filters, setFilters] = useState<{
+    search?: string
+    location?: string
+    jobType?: string
+    salaryRange?: [number, number]
+  }>({})
+
+  const jobGridRef = useRef<JobGridRef>(null)
+
+  const handleJobCreated = () => {
+    console.log("[v0] Job created, refreshing job list...")
+    if (jobGridRef.current) {
+      jobGridRef.current.refreshJobs()
+    }
+  }
+
   return (
-    <div style={{ minHeight: "100vh", background: "white" }}>
-      { /* Navbar component for navigation */}
+    <>
+      <Navbar onJobCreated={handleJobCreated} />
 
-      <header style={{ paddingTop: 120, paddingLeft: 20, paddingRight: 20, width: "100%", boxShadow: "0px 0px 14px 0px #C6BFBF60" }}>
-        <Navbar />
-        <SearchFilters />
-        <div style={{ height: 20 }} />
-      </header>
-      <main style={{ paddingTop: 20, paddingLeft: 20, paddingRight: 20, maxWidth: 1400, margin: "0 auto" }}>
-        <JobGrid />
-      </main>
-    </div>
-  );
+      <Box pt={120} bg="gray.0" mih="100vh">
+        <Container size="xl" py="xl">
+          <SearchFilters onFiltersChange={setFilters} />
+
+          <JobGrid ref={jobGridRef} filters={filters} />
+        </Container>
+      </Box>
+
+      <CreateJobModal opened={modalOpened} onClose={() => setModalOpened(false)} onJobCreated={handleJobCreated} />
+    </>
+  )
 }
-

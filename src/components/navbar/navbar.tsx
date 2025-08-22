@@ -2,11 +2,14 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import CreateJobModal from "../create/CreateJobModal"
 
-export function Navbar() {
+
+export function Navbar({ onJobCreated }: { onJobCreated?: () => void }) {
   const navItems = ["Home", "Find Jobs", "Find Talents", "About us", "Testimonials"]
   const [hover, setHover] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [modalOpened, setModalOpened] = useState(false)
 
   return (
     <>
@@ -16,14 +19,14 @@ export function Navbar() {
           w-[890px] max-w-[calc(100vw-40px)] h-[80px]
           rounded-[122px] border border-[#FCFCFC] bg-white
           shadow-[0_0_20px_rgba(127,127,127,0.15)]
-          z-[1000]
+          z-[10]
           flex items-center justify-between px-4 md:px-6
         "
       >
         {/* Left: Logo */}
         <div className="flex items-center flex-shrink-0">
-          <div className="w-12 h-12 grid place-items-center">
-            <img src="/logo.png" alt="Logo" className="w-12 h-12 object-contain" />
+          <div className="w-8 h-8 grid place-items-center">
+            <img src="/logo.png" alt="Logo" className="w-8 h-8 object-contain" />
           </div>
         </div>
 
@@ -34,12 +37,12 @@ export function Navbar() {
               key={item}
               href="#"
               className="
-                w-[120px] h-[48px]
+                w-[102px] h-[48px]
                 rounded-[12px]
                 opacity-100
                 px-[5px] py-[5px]
                 flex items-center justify-center
-                text-gray-900 font-medium text-md
+                text-gray-900 font-medium text-sm
                 transition-all duration-200
                 hover:translate-x-1 hover:shadow-lg hover:bg-white hover:text-gray-900
                 active:translate-x-[2px] active:shadow-md
@@ -64,13 +67,13 @@ export function Navbar() {
         </div>
 
         {/* Right: CTA */}
-        <Link
-          href="/jobs/create"
+        <button
+          onClick={() => setModalOpened(true)}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           className={`
-            relative overflow-hidden flex-shrink-0 mr-2
-            ${hover ? "w-[130px] h-[40px] translate-x-1 shadow-lg" : "w-[130px] h-[38px]"}
+            relative overflow-hidden flex-shrink-0 -mr-2
+            ${hover ? "w-[120px] h-[38px] translate-x-1 shadow-lg" : "w-[120px] h-[36px]"}
             rounded-[20px]
             bg-gradient-to-b from-[#A128FF] to-[#6100AD]
             text-white font-semibold
@@ -99,12 +102,12 @@ export function Navbar() {
               Login
             </span>
           </div>
-        </Link>
+        </button>
       </nav>
 
       {/* Mobile menu dropdown */}
       {mobileMenuOpen && (
-        <div className="lg:hidden fixed top-[110px] left-1/2 -translate-x-1/2 w-[calc(100vw-40px)] max-w-[890px] bg-white rounded-2xl border border-[#FCFCFC] shadow-[0_0_20px_rgba(127,127,127,0.15)] z-[999] p-4">
+        <div className="lg:hidden fixed top-[110px] left-1/2 -translate-x-1/2 w-[calc(100vw-40px)] max-w-[890px] bg-white rounded-2xl border border-[#FCFCFC] shadow-[0_0_20px_rgba(127,127,127,0.15)] z-[0] p-4">
           {navItems.map((item) => (
             <Link
               key={item}
@@ -117,6 +120,8 @@ export function Navbar() {
           ))}
         </div>
       )}
+
+      <CreateJobModal opened={modalOpened} onClose={() => setModalOpened(false)} onJobCreated={onJobCreated} />
     </>
   )
 }

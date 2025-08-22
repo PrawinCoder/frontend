@@ -115,7 +115,7 @@ export default function JobCard({
             <Text
               key={index}
               size="sm"
-              style={{ color: "##555555", fontWeight: 500, lineHeight: 1.4, fontSize: '14px' }}
+              style={{ color: "#555555", fontWeight: 500, lineHeight: 1.4, fontSize: '14px' }}
               className="text-gray-500 leading-snug line-clamp-2"
             >
               • {item}
